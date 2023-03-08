@@ -1,31 +1,28 @@
 import React, { useState } from "react";
 import SideBar from "./SideBar/SideBar";
+import Content from "./Content/Content";
+import { FaFire } from "react-icons/fa"
+import Layout from "./Layout";
+import { Route, Routes } from "react-router-dom";
+
 
 const App = () => {
-    let [active, setActive] = useState(true)
 
 
-    const handlePosition = () => {
-        if (active) {
-            setActive(false)
-        } else {
-            setActive(true)
-        }
-    }
-
-    const buttons = ['test', 'test2', 'palle']
+    const buttons = [
+        {
+            name: 'test',
+            link: '/test',
+            icon: <FaFire color="white" size="24" />,
+        }]
 
     return (
-        <div className="flex">
-            <button onClick={handlePosition}>Test</button>
-            {/* <SideBar classes={active ? "sidebar active" : "sidebar"} childButtons={buttons} /> */}
-            <SideBar childButtons={buttons} />
-            <main>
-                <section>
-                    
-                </section>
-            </main>
-        </div>
+        <>
+            <Layout childButtons={buttons}/>
+            <Routes>
+                <Route path="/" element={<Content />} />
+            </Routes>
+        </>
     )
 }
 

@@ -1,29 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
-import { FaFire } from "react-icons/fa"
+
+// const style = "fixed h-screen w-48 m-0 flex flex-col bg-gray-900 shadow-l"
 
 const SideBar = (props) => {
 
-    const button = props.childButtons.map((name) => {
-        return (<Button key={name} name={name} />)
+    const navigate = useNavigate()
+
+    const button = props.childButtons.map((button) => {
+        return (
+        <Button key={button.name} name={button.name} icon={button.icon} onClick={navigate('/test')} />)
     })
     
     return (
-        // <div key="sidebar" className={props.classes}>
-        <div key="sidebar" className="fixed top-0 h-screen w-48 m-0 
-                                        flex flex-col bg-gray-800 shadow-lg">
-            {/* <Logo /> */}
+        <div key="sidebar" className="
+            w-48
+            flex flex-col
+            bg-stone-800
+        ">
+
             {button}
-            <SideBarIcon icon={<FaFire color="white" size="48" />} />
+
         </div>
     )
 }
-
-//({icon}) the {} brackets are for input props
-const SideBarIcon = ({icon}) => (
-    <div>
-        {icon}
-    </div>
-)
 
 export default SideBar
