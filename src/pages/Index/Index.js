@@ -1,10 +1,7 @@
 import React from "react";
-import Content from "../../components/Content/Content";
 
 const Index = () => {
-    return (
-        <Content />
-    )
-}
+  return <p>a</p>;
+};
 
-export default Index
+export default Index;

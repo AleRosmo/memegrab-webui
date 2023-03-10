@@ -1,36 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const style = "text-white"
+const active = "bg-gray-500"
+const inactive = "bg-gray-700"
 
-const Button = (props) => {
+const Button = ({ path, icon, name }) => {
+  return (
+    <NavLink
+      to={path}
+      className={({isActive}) => {
+        const bg = isActive ? active: inactive
+        return (["flex ml-2 py-1.5 text-white rounded-l-md\
+            hover:bg-gray-400 hover:duration-250 hover:transition \
+            ease-in-out duration-250", bg].join(' '))
+        }}
+    >
+      <span className="ml-0.5">{icon}</span>
 
-    return (
-        <div>
-
-            <button className="
-            w-full
-            ml-2 p-1 my-0.5
-            rounded-l-md
-            text-white  bg-gray-700
-            flex items-center justify-center gap-2
-
-            hover:bg-gray-500 hover:duration-250 
-            hover:transition ease-in-out duration-250">
-
-                <span className="place-content-center">
-                    {props.icon}
-                </span>
-                
-                <Link to={props.link}>{props.name}</Link>
-                
-            </button>
-        </div>
-        // <button className={style}>
-
-
-
-    )
-}
-
-export default Button
+      <span className="flex-grow">{name}</span>
+    </NavLink>
+  );
+};
+export default Button;
