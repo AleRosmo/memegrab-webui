@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaFire } from "react-icons/fa";
 import { Route, Routes } from "react-router-dom";
 import Layout from "../layout/Layout";
-import Index from "../pages/Index/Index";
+import Home from "../pages/Home/Home";
 import Test from "../pages/Test/Test";
 
 const App = () => {
@@ -28,9 +28,9 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Layout buttons={buttons} />}>
-          <Route index element={<Index />} />
+          <Route index element={<Home />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/palle" element={<Index />} />
+          <Route path="/palle" element={'empty'} />
         </Route>
       </Routes>
     </>

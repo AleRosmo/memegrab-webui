@@ -9,7 +9,7 @@ const Layout = ({ buttons }) => {
   });
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen flex">
       <SideBar>{sideButtons}</SideBar>
       <Outlet />
     </div>
