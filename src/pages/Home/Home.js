@@ -1,18 +1,17 @@
 import React from "react";
 import Table from "../../components/Table/Table";
 
-const tableHeaders = ["Si", "Siii", "Siuuuuuuuuu"];
-
-const tableRows = [
-  ["dio", "mmmh", "bubu"],
-  ["1", "2", "3"],
-];
+const saved = {
+  headers: ["id", "filename"],
+  url: "http://localhost:8080/saved",
+  title: "Saved",
+};
 
 const Home = () => {
   return (
-    <>
-      <Table headers={tableHeaders} rowData={tableRows} />
-    </>
+    <div className="w-full bg-gray-500 overflow-scroll">
+      <Table info={saved} />
+    </div>
   );
 };
 
