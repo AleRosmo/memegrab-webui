@@ -3,48 +3,45 @@ import axios from "axios";
 
 const rowStyle =
   "bg-gray-400 text-gray-700 border-b border-gray-700 hover:bg-gray-200 \
-                hover:transition-colors duration-150 hover:duration-150 first:text-bold ";
+                hover:transition-colors duration-150 hover:duration-150";
 
-const dataStyle = "px-6 py-2";
+const dataStyle = "";
 
-const headerStyle = "px-6 py-3";
+const headerStyle = "";
 
-// TODO: Change name 'endpoint' fa caca'
+// TODO: Change name 'endpoint', fa cagare
 const Table = ({ info }) => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    axios.get(info.url).then((res) => {
-      const tableRows = res.data.map((row) => {
+    axios.get(info.url).then((response) => {
+      const rows = response.data.map((row) => {
         const cells = Object.values(row).map((cell) => {
-          return <td className={dataStyle}>{cell}</td>;
+          return <td className="px-6 py-2 max-w-sm overflow-hidden \
+          overflow-ellipsis hover:h-fit ">{cell}</td>;
         });
-
         return <tr className={rowStyle}>{cells}</tr>;
       });
-      setRows(tableRows);
+      setRows(rows);
     });
   }, []);
 
-  // const row = rows.data.map((_row) => {
-  //   <td className={dataStyle}>{_row}</td>;
-  // });
-
   const heading = info.headers.map((col) => (
-    <th scope="col" className={headerStyle}>
+    <th scope="col" className="px-6 py-3">
       {col}
     </th>
   ));
 
   return (
-    <div className="w-fit h-fit m-2 shadow-md rounded-xl bg-gray-300">
+    <div className="max-w-min h-fit m-2 shadow-md rounded-xl bg-gray-300 overflow-auto overscroll-none">
       <span className="w-full table-caption p-2 font-bold">{info.title}</span>
-      <table className="table-auto text-sm text-left text-gray-200">
+      <table className="text-sm text-left text-gray-200">
         <thead className="text-xs text-gray-300 uppercase bg-gray-700">
           <tr>{heading}</tr>
         </thead>
         <tbody>{rows}</tbody>
       </table>
+      <hr className="my-3 border-0" />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Button from "../components/Button/Button";
 import SideBar from "../components/SideBar/SideBar";
+import SideButton from "../components/SideButton/SideButton";
 
 const Layout = ({ buttons }) => {
   const sideButtons = buttons.map(({ name, icon, path }) => {
-    return <Button key={name} name={name} icon={icon} path={path} />;
+    return <SideButton key={name} name={name} icon={icon} path={path} />;
   });
 
   return (
