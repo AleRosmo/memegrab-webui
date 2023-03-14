@@ -7,8 +7,8 @@ const handleLogin = (event) => {
   event.preventDefault();
   const form = formToJSON(event.target);
 
-  const req = axios.post("http://localhost:8080/login", form, {headers: {"Access-Control-Allow-Origin": "*"}})
-  req.then(console.log(form));
+  const res = axios.post("http://localhost:8080/login", form, {headers: {"Access-Control-Allow-Origin": "*"}})
+  console.log(res)
 };
 
 const Login = () => {
