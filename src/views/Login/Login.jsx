@@ -1,11 +1,19 @@
+import axios, { formToJSON } from "axios";
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Logo from "../../components/Logo/Logo";
 
 const handleLogin = (event) => {
   event.preventDefault();
-  const formData = event.target.data;
-  console.log(formData);
+
+  // for (const [key, value] of Object.entries(form)) {
+  //   form.append(key, value)
+  // }
+
+  const form = formToJSON(event.target);
+
+  const req = axios.post("http://localhost:8080/auth", form)
+  req.then(console.log(form));
 };
 
 const Login = () => {

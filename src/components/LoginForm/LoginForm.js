@@ -1,7 +1,7 @@
 import React from "react";
 import LabelTextInput from "../LabelTextInput/LabelTextInput";
-import RememberMe from "../RememberMe/RememberMe";
-import LoginButton from "./LoginButton/components/LoginButton";
+import LoginRemember from "./components/LoginRemember/LoginRemember";
+import LoginButton from "./components/LoginButton/LoginButton";
 
 const LoginForm = ({ onSubmit }) => {
   return (
@@ -9,7 +9,7 @@ const LoginForm = ({ onSubmit }) => {
       <LabelTextInput name="email" id="email" type="email" placeholder="your@email.com">Your email </LabelTextInput>
       <LabelTextInput name="password" id="password" type="password" placeholder="••••••••"> Your password </LabelTextInput>
       <div className="flex items-center justify-between">
-        <RememberMe />
+        <LoginRemember />
         <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot Password?</a>
       </div>
       <LoginButton />

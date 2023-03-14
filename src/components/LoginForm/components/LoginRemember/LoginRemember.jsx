@@ -1,6 +1,6 @@
 import React from "react";
 
-const RememberMe = () => {
+const LoginRemember = () => {
     return (
         <div className="flex items-start">
         <div className="flex items-center h-5">
@@ -24,4 +24,4 @@ const RememberMe = () => {
     )
 }
 
-export default RememberMe
+export default LoginRemember

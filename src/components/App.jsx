@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { FaFire } from "react-icons/fa";
-import { GrLogin } from "react-icons/gr";
 import { BiHome, BiLogIn } from "react-icons/bi";
 import { Route, Routes } from "react-router-dom";
 import Layout from "../layout/Layout";
-import Home from "../pages/Home/Home";
-import Test from "../pages/Test/Test";
-import Login from "../pages/Login/Login";
+import Home from "../views/Home/Home";
+import Login from "../views/Login/Login";
 
 const iconStlye = "ml-1 mr-3";
 
@@ -18,6 +16,8 @@ const App = () => {
     headers: ["ID", "File Name", "Sender ID", "Timestamp"],
   };
 
+
+  // !! COMPOUND COMPONENTS
   const buttons = [
     {
       name: "Home",

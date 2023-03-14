@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import SideBar from "../components/SideBar/SideBar";
-import SideButton from "../components/SideButton/SideButton";
+import SideButton from "../components/SideBar/ components/SideButton/SideButton";
 
 const Layout = ({ buttons }) => {
   const sideButtons = buttons.map(({ name, icon, path }) => {
