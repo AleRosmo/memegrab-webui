@@ -1,8 +1,12 @@
 import React from "react";
-import Button from "../../components/Button/Button";
-import InputLabel from "../../components/InputLabel/InputLabel";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import Logo from "../../components/Logo/Logo";
-import RememberMe from "../../components/RememberMe/RememberMe";
+
+const handleLogin = (event) => {
+  event.preventDefault();
+  const formData = event.target.data;
+  console.log(formData);
+};
 
 const Login = () => {
   return (
@@ -14,39 +18,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
-              <InputLabel
-                id="email"
-                name="email"
-                type="email"
-                text="Your email"
-              />
-              <InputLabel
-                id="password"
-                name="password"
-                type="password"
-                text="Your password"
-              />
-              <div className="flex items-center justify-between">
-               <RememberMe />
-                <a
-                  href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Forgot Password?
-                </a>
-              </div>
-              <Button type="input" text="Login" />
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Sign up
-                </a>
-              </p>
-            </form>
+            <LoginForm onSubmit={handleLogin}> </LoginForm>
           </div>
         </div>
       </div>
@@ -55,4 +27,3 @@ const Login = () => {
 };
 
 export default Login;
-

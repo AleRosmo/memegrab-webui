@@ -12,7 +12,6 @@ const headerStyle = "";
 // TODO: Change name 'endpoint', fa cagare
 const Table = ({ info }) => {
   const [rows, setRows] = useState([]);
-
   useEffect(() => {
     axios.get(info.url).then((response) => {
       const rows = response.data.map((row) => {
