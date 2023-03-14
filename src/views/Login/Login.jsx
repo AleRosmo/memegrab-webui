@@ -1,22 +1,20 @@
 import axios, { formToJSON } from "axios";
-import React from "react";
+import React, { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Logo from "../../components/Logo/Logo";
 
 const handleLogin = (event) => {
   event.preventDefault();
-
-  // for (const [key, value] of Object.entries(form)) {
-  //   form.append(key, value)
-  // }
-
   const form = formToJSON(event.target);
 
-  const req = axios.post("http://localhost:8080/auth", form)
+  const req = axios.post("http://localhost:8080/login", form, {headers: {"Access-Control-Allow-Origin": "*"}})
   req.then(console.log(form));
 };
 
 const Login = () => {
+
+  const [error, setError] = useState(false)
+
   return (
     <section className="bg-gray-300 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
