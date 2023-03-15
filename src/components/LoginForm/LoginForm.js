@@ -1,7 +1,7 @@
 import React from "react";
-import LabelTextInput from "../LabelTextInput/LabelTextInput";
-import LoginRemember from "./components/LoginRemember/LoginRemember";
-import LoginButton from "./components/LoginButton/LoginButton";
+import LabelTextInput from "../LabelTextInput";
+import LoginRemember from "./components/LoginRemember";
+import LoginButton from "./components/LoginButton";
 
 const LoginForm = ({ onSubmit }) => {
   return (

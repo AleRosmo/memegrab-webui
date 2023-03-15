@@ -1,19 +1,44 @@
 import axios, { formToJSON } from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
+import LoginError from "../../components/LoginForm/components/LoginError";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Logo from "../../components/Logo/Logo";
 
-const handleLogin = (event) => {
-  event.preventDefault();
-  const form = formToJSON(event.target);
-
-  const res = axios.post("http://localhost:8080/login", form, {headers: {"Access-Control-Allow-Origin": "*"}})
-  console.log(res)
-};
-
+// console.log(data.headers);
 const Login = () => {
+  const navigate = useNavigate();
+  const [isError, setIsError] = useState();
 
-  const [error, setError] = useState(false)
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = formToJSON(e.target);
+    axios
+      .post("http://localhost:8080/auth", form, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then((response) => {
+        setIsError(false);
+      })
+      .catch((response) => {
+        setIsError(true);
+      });
+  };
+
+  useEffect(() => {
+    if (document.cookie.startsWith("token=")) {
+      // how do i log in now?? /auth/validate
+    }
+  })
+
+  useEffect(() => {
+    if (!isError && isError != undefined) {
+      navigate("/");
+    }
+  }, [isError]);
 
   return (
     <section className="bg-gray-300 dark:bg-gray-900">
@@ -25,6 +50,7 @@ const Login = () => {
               Sign in
             </h1>
             <LoginForm onSubmit={handleLogin}> </LoginForm>
+            {!isError ? null : <LoginError />}
           </div>
         </div>
       </div>
