@@ -1,11 +1,14 @@
 import React from "react";
+import ContainerTable from "../../components/ContainerTable";
 import Table from "../../components/Table/Table";
 
-const Home = ({children}) => {
+const Home = ({ children }) => {
   return (
-    <div className="w-full bg-gray-500 overflow-scroll">
-      <Table info={children} />
-    </div>
+    <>
+      <ContainerTable title="test1" info={children} />
+      <ContainerTable title="test2" info={children} />
+      <ContainerTable title="test3" info={children} />
+    </>
   );
 };
 

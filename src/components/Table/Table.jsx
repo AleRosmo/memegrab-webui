@@ -38,9 +38,8 @@ const Table = ({ info }) => {
   ));
 
   return (
-    <div className="max-w-min h-fit m-2 shadow-md rounded-xl bg-gray-300 overflow-auto overscroll-none">
-      <span className="w-full table-caption p-2 font-bold">{info.title}</span>
-      <table className="text-sm text-left text-gray-200">
+    <div className="h-full m-2 shadow-md rounded-xl bg-gray-300 overflow-scroll overscroll-none">
+      <table className="w-full text-sm text-left text-gray-200">
         <thead className="text-xs text-gray-300 uppercase bg-gray-700">
           <tr>{heading}</tr>
         </thead>

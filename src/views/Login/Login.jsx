@@ -1,6 +1,7 @@
 import axios, { formToJSON } from "axios";
 import React, { useEffect, useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CenterContainer from "../../components/CenterContainer";
 import LoginError from "../../components/LoginForm/components/LoginError";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Logo from "../../components/Logo/Logo";
@@ -14,10 +15,10 @@ const Login = () => {
     e.preventDefault();
     const form = formToJSON(e.target);
     axios
-      .post("http://localhost:8080/auth", form, {
+      .post("http://localhost:8080/auth/login", form, {
         withCredentials: true,
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
@@ -30,9 +31,11 @@ const Login = () => {
 
   useEffect(() => {
     if (document.cookie.startsWith("token=")) {
-      // how do i log in now?? /auth/validate
+      axios.get("http://localhost:8080/auth/validate", {
+        withCredentials: true,
+      });
     }
-  })
+  });
 
   useEffect(() => {
     if (!isError && isError != undefined) {
@@ -44,15 +47,10 @@ const Login = () => {
     <section className="bg-gray-300 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <Logo size="large" title="Test" />
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:mx-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in
-            </h1>
-            <LoginForm onSubmit={handleLogin}> </LoginForm>
-            {!isError ? null : <LoginError />}
-          </div>
-        </div>
+        <CenterContainer title={"Sign in"}>
+          <LoginForm onSubmit={handleLogin} />
+          {!isError ? null : <LoginError />}
+        </CenterContainer>
       </div>
     </section>
   );

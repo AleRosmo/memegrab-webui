@@ -11,7 +11,9 @@ const Layout = ({ buttons }) => {
   return (
     <div className="w-full h-screen flex">
       <SideBar>{sideButtons}</SideBar>
-      <Outlet />
+      <section className="bg-gray-300 dark:bg-gray-900 w-full h-screen overflow-auto flex flex-grow flex-shrink flex-wrap content-baseline">
+        <Outlet />
+      </section>
     </div>
   );
 };
