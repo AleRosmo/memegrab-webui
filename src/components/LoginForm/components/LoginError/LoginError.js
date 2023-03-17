@@ -1,12 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-
-const LoginError = () => (
-  <p className='text-red-600'>
-    Invalid credentials.
-  </p>
-);
+const LoginError = ({ text }) => <p className="text-red-600">{text}</p>;
 
 LoginError.propTypes = {};
 

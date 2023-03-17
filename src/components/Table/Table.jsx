@@ -18,6 +18,7 @@ const Table = ({ info }) => {
         const cells = Object.values(row).map((cell) => {
           return (
             <td
+              key={cell}
               className="px-6 py-2 max-w-sm overflow-hidden \
           overflow-ellipsis hover:h-fit "
             >
@@ -25,27 +26,35 @@ const Table = ({ info }) => {
             </td>
           );
         });
-        return <tr className={rowStyle}>{cells}</tr>;
+        return (
+          <tr key={row.id} className={rowStyle}>
+            {cells}
+          </tr>
+        );
       });
       setRows(rows);
     });
   }, []);
 
-  const heading = info.headers.map((col) => (
-    <th scope="col" className="px-6 py-3">
+  const heading = info.headers.map((col, i) => (
+    <th key={i} scope="col" className="px-6 py-3">
       {col}
     </th>
   ));
 
   return (
-    <div className="h-full m-2 shadow-md rounded-xl bg-gray-300 overflow-scroll overscroll-none">
+    <div className="h-full mt-2 bg-gray-700 shadow-md rounded-xl overflow-scroll overscroll-none">
       <table className="w-full text-sm text-left text-gray-200">
-        <thead className="text-xs text-gray-300 uppercase bg-gray-700">
+        <thead className="text-xs text-gray-300 uppercase">
           <tr>{heading}</tr>
         </thead>
         <tbody>{rows}</tbody>
+        <tfoot>
+          <tr>
+            <td>[placeholder]</td>
+          </tr>
+        </tfoot>
       </table>
-      <hr className="my-3 border-0" />
     </div>
   );
 };

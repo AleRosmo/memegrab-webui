@@ -12,7 +12,7 @@ const Logo = ({ size, title }) => {
       </a>
     );
   }
-  return <img src="./logo.png" alt="Logo" className="max-h-16" />;
+  return <img src="./logo.png" alt="Logo" className="max-h-16 invert" />;
 };
 
 export default Logo;
