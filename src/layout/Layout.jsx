@@ -11,20 +11,15 @@ const Layout = ({ buttons }) => {
   });
 
   const context = useContext(AppContext);
-  const navigate = useNavigate()
 
   useEffect(() => {
-
-    const profile = GetProfile()
-
-    if (!profile || profile == undefined) {
-      navigate("/login")
-    }
-    if (profile && profile != undefined) {
+    const profile = GetProfile();
+    if (profile != null) {
       context.profile = profile
+    } else {
+      console.log("error fetching profile");
     }
-  
-  })
+  }, []);
 
   return (
     <div className="w-full h-screen flex">

@@ -1,21 +1,18 @@
 import axios, { formToJSON } from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import CenterContainer from "../../components/CenterContainer";
 import { AppContext } from "../../components/Context";
 import LoginError from "../../components/LoginForm/components/LoginError";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Logo from "../../components/Logo/Logo";
-import GetProfile from "../../helper/profile";
 
-const Login = () => {
+export default function Login() {
   const navigate = useNavigate();
 
   const [isError, setIsError] = useState();
   const [isInvalid, setIsInvalid] = useState();
-
-  const [isLoggedIn, setIsLoggedIn] = useState();
 
   const context = useContext(AppContext);
 
@@ -30,11 +27,11 @@ const Login = () => {
         },
       })
       .then((response) => {
-        setIsLoggedIn(true);
-        setIsError(false);
+        console.log(response.data);
+        navigate(context.url.home);
       })
       .catch((response) => {
-        setIsLoggedIn(false);
+        console.log(response.data);
         setIsError(true);
       });
   };
@@ -46,25 +43,17 @@ const Login = () => {
           withCredentials: true,
         })
         .then((response) => {
-          setIsLoggedIn(true);
-          setIsInvalid(false);
+          navigate(context.url.home);
         })
         .catch((response) => {
-          setIsLoggedIn(false);
           setIsInvalid(true);
         });
     }
   }, []);
 
-  useEffect(() => {
-    if (isLoggedIn && !isError && !isInvalid && isLoggedIn != undefined) {
-      navigate("/");
-    }
-  }, [isLoggedIn]);
-
   return (
     <section className="bg-gray-300 dark:bg-gray-900">
-      {!isLoggedIn || isLoggedIn != undefined ? (
+      {/* {isError || isInvalid ? ( */}
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <Logo key="logo" size="large" title="Test" />
           <CenterContainer title={"Sign in"}>
@@ -73,9 +62,7 @@ const Login = () => {
             {!isInvalid ? null : <LoginError text="Please log in again." />}
           </CenterContainer>
         </div>
-      ) : null}
+      {/* ) : null} */}
     </section>
   );
-};
-
-export default Login;
+}

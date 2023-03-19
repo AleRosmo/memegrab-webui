@@ -1,7 +1,12 @@
 import React, { createContext, useState } from "react";
 
 let contextObj = {
+  url :{
+   home: "/",
+   login: "/login",
+  },
   profile: {},
+  isLogged: false,
 };
 
 export const AppContext = createContext(contextObj);
