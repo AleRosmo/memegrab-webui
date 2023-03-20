@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import SideBar from "../components/SideBar/SideBar";
 import SideButton from "../components/SideBar/ components/SideButton/SideButton";
 import { AppContext } from "../components/Context";
-import GetProfile from "../helper/profile";
+import GetProfile from "../utils/Profile";
 
 const Layout = ({ buttons }) => {
   const sideButtons = buttons.map(({ name, icon, path }) => {
@@ -15,10 +15,13 @@ const Layout = ({ buttons }) => {
   useEffect(() => {
     const profile = GetProfile();
     if (profile != null) {
-      context.profile = profile
+      context.profile = profile;
     } else {
       console.log("error fetching profile");
     }
+    return () => {
+      context.profile = {};
+    };
   }, []);
 
   return (

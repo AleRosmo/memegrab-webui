@@ -1,9 +1,11 @@
 import React, { createContext, useState } from "react";
 
 let contextObj = {
-  url :{
-   home: "/",
-   login: "/login",
+  url: {
+    home: "/",
+    login: "/login/",
+    profile: "/api/profile/",
+    auth: "/api/auth/",
   },
   profile: {},
   isLogged: false,

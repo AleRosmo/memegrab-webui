@@ -43,7 +43,7 @@ export default function App() {
       <AppProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Layout buttons={buttons} />}>
+          <Route path="/"  element={<Layout buttons={buttons} />}>
             <Route index element={<Home>{saved}</Home>} />
             <Route path="/palle" element={"empty"} />
           </Route>

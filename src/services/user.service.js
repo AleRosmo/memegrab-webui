@@ -1,4 +1,8 @@
 import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "../components/Context";
+
+const context = useContext(AppContext)
 
 class Profile {
   constructor(id, username, email) {
@@ -8,7 +12,7 @@ class Profile {
   }
   update() {
     axios
-      .get(`http://localhost:8080/profile${this.id}`, {
+      .get(context.url.profile, {
         withCredentials: true,
       })
       .then((response) => {
@@ -25,16 +29,13 @@ class Profile {
 }
 
 export default function GetProfile() {
-  axios
-    .get("http://localhost:8080/profile", {
-      withCredentials: true,
-    })
-    .then((response) => {
-      const payload = response.data;
-      const profile = new Profile(payload.id, payload.username, payload.email);
-      return profile
-    })
-    .catch((response) => {
-      return null
-    });
+  return axios.get(context.url.profile)
+    // .then((response) => {
+    //   const payload = response.data;
+    //   const profile = new Profile(payload.id, payload.username, payload.email);
+    //   return profile
+    // })
+    // .catch((response) => {
+    //   return null
+    // });
 }
