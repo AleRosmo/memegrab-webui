@@ -11,17 +11,18 @@ const headerStyle = "";
 // TODO: Change name 'endpoint', fa cagare
 // TODO: Break down in smaller components
 const Table = ({ info }) => {
+
   const [rows, setRows] = useState([]);
+
   useEffect(() => {
-    axios.get(info.url).then((response) => {
+
+    axios.get(info.url, { withCredentials: true }).then((response) => {
+
       const rows = response.data.map((row) => {
+
         const cells = Object.values(row).map((cell) => {
           return (
-            <td
-              key={cell}
-              className="px-6 py-2 max-w-sm overflow-hidden \
-          overflow-ellipsis hover:h-fit "
-            >
+            <td key={cell} className="px-6 py-2 max-w-sm overflow-hidden overflow-ellipsis hover:h-fit">
               {cell}
             </td>
           );

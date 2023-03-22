@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import ContainerTable from "../../components/ContainerTable";
-import isLogged from "../../services/auth.service";
-import GetProfile from "../../services/Profile";
+import AuthService from "../../services/auth.service";
 
 export default function Home({ children }) {
-  const context = useOutletContext();
-
-  console.log(context.profile);
+  const navigate = useNavigate();
+  const ctx = useOutletContext();
 
   useEffect(() => {
-    
-
+    console.log("Check Auth from Home");
+    ctx.setIsLoading(true);
+    AuthService.check()
+      .then((response) => {
+        if (response === true) {
+          ctx.setIsLogged(true);
+        }
+      })
+      .catch((response) => {
+        navigate('/login')
+        console.error(response.data);
+      });
     return () => {
-      second;
+      ctx.setIsLoading(false);
+      ctx.setIsLogged(false);
     };
-  }, [third]);
+  }, []);
 
   return (
     <>

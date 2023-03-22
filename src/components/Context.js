@@ -1,25 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { createContext } from "react";
 
-let contextObj = {
-  url: {
-    home: "/",
-    login: "/login/",
-    profile: "/api/profile/",
-    auth: "/api/auth/",
-  },
-  profile: {},
-  isLogged: false,
-};
+export const AppContext = createContext();
 
-export const AppContext = createContext(contextObj);
 
-export default function AppProvider({ children }) {
-  const [isTest, setIsTest] = useState("it is not");
-
-  contextObj.isTest = isTest;
-  contextObj.setIsTest = setIsTest;
-
-  return (
-    <AppContext.Provider value={contextObj}>{children}</AppContext.Provider>
-  );
+export default function AppProvider({ context, children }) {
+  return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 }
