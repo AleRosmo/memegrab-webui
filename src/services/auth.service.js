@@ -2,13 +2,14 @@ import axios from "axios";
 
 const API_URL = "/auth";
 
-const login = async (jsonForm) => {
-	const response = await axios.post(API_URL + "/signin", jsonForm, {
-		headers: {
-			"Content-Type": "application/json",
-		},
-		withCredentials: true,
-	});
+const login = async (email, password) => {
+	const response = await axios.post(
+		API_URL + "/signin",
+		{ email, password },
+		{
+			withCredentials: true,
+		}
+	);
 	if (response.data.username) {
 		localStorage.setItem("user", JSON.stringify(response.data));
 	}
@@ -17,7 +18,6 @@ const login = async (jsonForm) => {
 
 const check = async () => {
 	const response = await axios.get(API_URL, {
-		headers: { "Content-Type": "application/json" },
 		withCredentials: true,
 	});
 	if (response.status === 200) {

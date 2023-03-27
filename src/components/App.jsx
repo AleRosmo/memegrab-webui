@@ -11,7 +11,6 @@ const iconStlye = "ml-1 mr-3";
 
 export default function App() {
 	const [isLoading, setIsLoading] = useState(false);
-	const [isLogged, setIsLogged] = useState();
 
 	// TODO: Custom type and dynamic load
 	const saved = {
@@ -25,15 +24,12 @@ export default function App() {
 	let context = {
 		isLoading,
 		setIsLoading,
-		isLogged,
-		setIsLogged,
 		url: {
 			home: "/",
 			login: "/login/",
 			profile: "/api/profile/",
 			auth: "/api/auth/",
 		},
-		profile: {},
 		isLogged: false,
 	};
 
