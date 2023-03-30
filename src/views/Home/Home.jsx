@@ -8,7 +8,7 @@ export default function Home({ children }) {
 
 	// Check if logged in
 	useEffect(() => {
-		AuthService.check().catch(() => {
+		AuthService.validate().catch(() => {
 			navigate("/login");
 		});
 	}, [navigate]);

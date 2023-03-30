@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Table from "../Table/Table";
-import Container from "../Container/Container";
+import Container from "../basic/Container/Container";
 
 const ContainerTable = ({ title, info }) => (
-  <Container title={title}>
-    <Table info={info}></Table>
-  </Container>
+	<Container title={title}>
+		<Table info={info}></Table>
+	</Container>
 );
 
 ContainerTable.propTypes = {};

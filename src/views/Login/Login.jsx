@@ -9,13 +9,12 @@ export default function Login() {
 
 	// Check if logged in
 	useEffect(() => {
-		AuthService.check()
+		AuthService.validate()
 			.then(() => {
 				navigate("/");
 			})
 			.catch((res) => {
-				res.cookie = "";
-				window.cookie.remove("memegrab");
+				setIsLoggedIn(false);
 			});
 	}, [navigate]);
 

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import CenterContainer from "../../components/CenterContainer";
+import CenterContainer from "../basic/CenterContainer";
 import LabelTextInput from "../../components/LabelTextInput";
 import LoginButton from "../../components/LoginForm/LoginButton/LoginButton";
 import LoginError from "../../components/LoginForm/LoginError";
 import LoginRemember from "../../components/LoginForm/LoginRemember/LoginRemember";
-import Logo from "../../components/Logo/Logo";
+import Logo from "../basic/Logo";
 import AuthService from "../../services/auth.service";
 import { AppContext } from "../Context";
 

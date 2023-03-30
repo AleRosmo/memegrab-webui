@@ -16,7 +16,15 @@ const login = async (email, password) => {
 	return response.data;
 };
 
-const check = async () => {
+const logout = async () => {
+	const response = await axios.get(API_URL + "/signout", {
+		withCredentials: true,
+	});
+	localStorage.removeItem("user");
+	return response.data;
+};
+
+const validate = async () => {
 	const response = await axios.get(API_URL, {
 		withCredentials: true,
 	});
@@ -32,7 +40,8 @@ const getCurrentUser = () => {
 
 const AuthService = {
 	login,
-	check,
+	logout,
+	validate,
 	getCurrentUser,
 };
 
