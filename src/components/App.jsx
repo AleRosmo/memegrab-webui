@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BiHome, BiLogIn } from "react-icons/bi";
-import { FaFire } from "react-icons/fa";
+import { ImHammer2 } from "react-icons/im";
 import { Route, Routes } from "react-router-dom";
+import ContentMod from "../views/ContentMod/ContentMod";
 import Home from "../views/Home/Home";
 import Layout from "../views/Layout";
 import Login from "../views/Login/Login";
@@ -48,9 +49,16 @@ export default function App() {
 			),
 		},
 		{
-			name: "palle",
-			path: "/palle",
-			icon: <FaFire key='palle' color='red' size='24' className={iconStlye} />,
+			name: "Content Mod",
+			path: "/contentmod",
+			icon: (
+				<ImHammer2
+					key='contentMod'
+					color='white'
+					size='22'
+					className={iconStlye}
+				/>
+			),
 		},
 	];
 
@@ -61,7 +69,7 @@ export default function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/' element={<Layout buttons={buttons} />}>
 						<Route index element={<Home>{saved}</Home>} />
-						<Route path='/palle' element={"empty"} />
+						<Route path='/contentmod' element={<ContentMod info={saved} />} />
 					</Route>
 				</Routes>
 			</AppProvider>

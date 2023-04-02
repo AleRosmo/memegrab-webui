@@ -9,7 +9,7 @@ const SideBar = ({ children }) => {
 		<aside key='sidebar' className={sidebar}>
 			<Logo size='small' />
 			{/* // TODO: Single component hr */}
-			<hr className='my-2 mx-3border-gray-300' />
+			<hr className='my-2 mx-3 border-gray-300' />
 			{children}
 			<div className='mb-auto' />
 			<ProfileBox profile={localStorage.getItem("user")} />

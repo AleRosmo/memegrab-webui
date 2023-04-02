@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BiLogOut } from "react-icons/bi";
-import { Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import Avatar from "../Avatar";
 const style =
@@ -17,20 +17,19 @@ export default function ProfileBox(props) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		console.log(props);
-	}, []);
+	}, [props]);
 
 	return (
 		<div className={style}>
 			{/* <Avatar src={props.avatar} /> */}
 			<Avatar src={"pp.png"} />
-			<h3 className='mr-4'>{"Nig"}</h3>
+			<h3 className='mr-4'>{"Wop"}</h3>
 			<BiLogOut
 				className='cursor-pointer'
 				onClick={() => {
 					AuthService.logout().then(navigate("/login"));
 				}}
 			/>
-			``
 		</div>
 	);
 }

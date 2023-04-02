@@ -12,5 +12,6 @@ export default function Home({ children }) {
 			navigate("/login");
 		});
 	}, [navigate]);
+
 	return <ContainerTable info={children} />;
 }
