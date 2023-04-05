@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Carousel from "../../components/Carousel/Carousel";
 import AuthService from "../../services/auth.service";
+import ModService from "../../services/mod.service";
 
 export default function ContentMod({ info }) {
 	const navigate = useNavigate();
@@ -24,35 +25,29 @@ export default function ContentMod({ info }) {
 
 	const [images, setImages] = useState([]);
 
-	useEffect(() => {
-		loadContent();
-		const keyboardEvent = (e) => {
-			if (e.key === "ArrowRight") {
-				// nextPost();
-			}
-			if (e.key === "ArrowLeft") {
-				// prevPost();
-			}
-		};
-		window.addEventListener("keydown", keyboardEvent, false);
-
-		return () => {
-			window.removeEventListener("keydown", keyboardEvent);
-		};
-	}, []);
-
 	const loadContent = () => {
 		axios.get(info.url, { withCredentials: true }).then((response) => {
-			const urlMap = response.data.map((item) => {
-				return `/img/${item.file_name}`;
+			const urlMap = response.data.map((imageData) => {
+				return {
+					url: `/img/${imageData.file_name}`,
+					// alt: imageData.file_name,
+					id: imageData.id,
+				};
 			});
 			setImages(urlMap);
 		});
 	};
 
+	useEffect(() => {
+		loadContent();
+		return () => {
+			setImages([]);
+		};
+	}, []);
+
 	return (
 		<div className='w-full flex flex-col justify-center items-center'>
-			<Carousel images={images} />
+			<Carousel initialImages={images} ModService={ModService} />
 		</div>
 	);
 }
