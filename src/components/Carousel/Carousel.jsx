@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import {
-	BsFillArrowLeftCircleFill,
-	BsFillArrowRightCircleFill,
-} from "react-icons/bs";
 
-export default function Carousel({ initialImages, ModService }) {
+import ApprovalButton from "./ApprovalButton/ApprovalButton";
+import ArrowButton from "./ArrowButton/ArrowButton";
+
+export default function Carousel({ images, setApproved }) {
 	const [currentImage, setCurrentImage] = useState(0);
-	const [images, setImages] = useState(initialImages);
+
 	const totalImages = images.length;
 
 	const refs = images.reduce((accumulator, currentValue, index) => {
@@ -44,51 +42,7 @@ export default function Carousel({ initialImages, ModService }) {
 	const arrowStyle =
 		"absolute block text-white text-2xl z-10 bg-black h-10 w-10 rounded-full opacity-75 flex items-center justify-center";
 
-	// Let's create dynamic buttons. It can be either left or right. Using
-	// isLeft boolean we can determine which side we'll be rendering our button
-	// as well as change its position and content.
-	const sliderControl = (isLeft) => (
-		<button
-			type='button'
-			onClick={isLeft ? previousImage : nextImage}
-			className={`${arrowStyle} ${isLeft ? "left-2" : "right-2"}`}
-			style={{ top: "40%" }}>
-			<span role='img' aria-label={`Arrow ${isLeft ? "left" : "right"}`}>
-				{isLeft ? (
-					<BsFillArrowLeftCircleFill />
-				) : (
-					<BsFillArrowRightCircleFill />
-				)}
-			</span>
-		</button>
-	);
 
-	const approvalButton = (action, id) => (
-		<button
-			type='button'
-			onClick={action ? setApproved(true, id) : setApproved(false, id)}
-			className='bg-white p-4 border rounded-full hover:opacity-50'>
-			{action ? (
-				<AiOutlineCheck size={36} color='green' />
-			) : (
-				<AiOutlineClose size={36} color='red' />
-			)}
-		</button>
-	);
-
-	const setApproved = (approved, id) =>
-		approved
-			? () => {
-					ModService.review(id, true);
-					// setImages(
-					// 	images.map((image) =>
-					// 		image.id === id ? { ...image, approved: true } : image
-					// 	)
-					// );
-			  }
-			: () => {
-					ModService.review(id, false);
-			  };
 
 	useEffect(() => {
 		const keyboardEvent = (e) => {
@@ -115,17 +69,27 @@ export default function Carousel({ initialImages, ModService }) {
 					scrollbarWidth: "none",
 					msOverflowStyle: "none",
 				}}>
-				{sliderControl(true)}
+				<ArrowButton isLeft={true} action={previousImage} />
 				{images.map((img, i) => (
 					<div className='w-full flex-shrink-0' key={img.url} ref={refs[i]}>
 						<img src={img.url} className='w-full object-contain' />
 						<div className='w-full flex justify-around'>
-							{approvalButton(true, img.id)}
-							{approvalButton(false, img.id)}
+							<ApprovalButton
+								action={true}
+								id={img.id}
+								setApproved={setApproved}
+								nextImage={nextImage}
+							/>
+							<ApprovalButton
+								action={false}
+								id={img.id}
+								setApproved={setApproved}
+								nextImage={nextImage}
+							/>
 						</div>
 					</div>
 				))}
-				{sliderControl()}
+				<ArrowButton isLeft={false} action={nextImage} />
 			</div>
 		</div>
 	);
